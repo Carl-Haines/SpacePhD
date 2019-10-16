@@ -19,11 +19,10 @@ def my_kde(data):
     grid = GridSearchCV(KernelDensity(kernel='gaussian'),
                     {'bandwidth': np.linspace(2.5,4,1)},
                     cv=5, n_jobs=1)  # 20-fold cross-validation
-    #print(grid)
     grid.fit(x[:, None])
     kde = grid.best_estimator_
     pdf = np.exp(kde.score_samples(x_grid[:, None]))
-    print(grid.best_params_)
+    #print(grid.best_params_)
     return x_grid, pdf
 
 
